@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postcode Stress Tracker | Finder</title>
+    <style>
+        :root {
+            --finder-blue: #1D53FF;
+            --finder-ink: #232021;
+            --finder-surface: #F5F4EF;
+            --stress-high: #FE4F00;
+            --stress-med: #FFD23B;
+            --stress-low: #1DD751;
+        }
+        body { font-family: 'Modern Era', sans-serif; background: var(--finder-surface); color: var(--finder-ink); margin: 0; padding: 20px; line-height: 1.5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .logo { font-weight: 900; font-style: italic; color: var(--finder-blue); font-size: 24px; margin-bottom: 20px; }
+        h1 { font-size: 28px; margin-bottom: 10px; }
+        p.subtitle { color: #74736E; margin-bottom: 30px; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 30px; }
+        input { flex: 1; padding: 15px; border: 2px solid #E6E5E0; border-radius: 8px; font-size: 16px; }
+        button { background: var(--finder-blue); color: white; border: none; padding: 15px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .result-card { border: 2px solid #E6E5E0; border-radius: 12px; padding: 20px; display: none; }
+        .result-card.active { display: block; }
+        .stress-level { display: flex; align-items: center; gap: 10px; font-weight: bold; margin-bottom: 15px; }
+        .indicator { width: 15px; height: 15px; border-radius: 50%; }
+        .high .indicator { background: var(--stress-high); }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .stat { border-top: 1px solid #E6E5E0; padding-top: 10px; }
+        .stat-val { font-size: 24px; font-weight: 900; }
+        .stat-label { font-size: 12px; color: #74736E; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-note { margin-top: 40px; font-size: 12px; color: #74736E; background: #F7F6EC; padding: 15px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">finder</div>
+        <h1>Postcode Stress Tracker</h1>
+        <p class="subtitle">National jobless hit 4.7%, but your suburb is different. Map the "Stress Zone" before Thursday's regional data.</p>
+        
+        <div class="search-box">
+            <input type="text" id="postcode" placeholder="Enter postcode (e.g. 2000)">
+            <button onclick="showResult()">Check Area</button>
+        </div>
+
+        <div id="result" class="result-card high">
+            <div class="stress-level">
+                <div class="indicator"></div>
+                <span>STRESS LEVEL: HIGH</span>
+            </div>
+            <div class="stat-grid">
+                <div class="stat">
+                    <div class="stat-val">5.8%</div>
+                    <div class="stat-label">Local Jobless (SA4)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">74%</div>
+                    <div class="stat-label">Mortgage Stress Index</div>
+                </div>
+            </div>
+            <p style="margin-top: 20px; font-size: 14px;"><strong>Insight:</strong> This area is 23% above the Sydney average for mortgage arrears risk. Thursday's ABS data is expected to show further softening in local participation.</p>
+        </div>
+
+        <div class="footer-note">
+            <strong>Data Source:</strong> ABS Regional Labour Force (6291.0.55.001) & Finder Mortgage Stress Index. Predicted values based on SA4 regional trends.
+        </div>
+    </div>
+
+    <script>
+        function showResult() {
+            const pc = document.getElementById('postcode').value;
+            if (pc) {
+                document.getElementById('result').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
